@@ -1,23 +1,24 @@
 import { Button, Checkbox, FormControlLabel, Link, TextField } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import React, { useState } from "react";
 import classes from "./login-page.module.scss";
 import globalClasses from "../../shared/styles/global.module.scss";
 
 interface LoginPageProps { }
 
-type State = { 
+type State = {
     username: string,
     password: string,
     remember: boolean
 }
 
 export const LoginPage: React.FC<LoginPageProps> = (): JSX.Element => {
-    const [inputs, setInputs] = useState<State>({ username: "", password: "", remember: false});
+    const [inputs, setInputs] = useState<State>({ username: "", password: "", remember: false });
 
-    const handleInputsChange = (event: React.ChangeEvent<HTMLInputElement>) => { 
+    const handleInputsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const name = event.target.name;
         const value = event.target.value;
-        name === "remember" ? setInputs(values => ({ ...values, remember: !inputs.remember})) : setInputs(values => ({ ...values, [name]: value}));
+        name === "remember" ? setInputs(values => ({ ...values, remember: !inputs.remember })) : setInputs(values => ({ ...values, [name]: value }));
     }
 
     const handleSubmitForm = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -40,12 +41,14 @@ export const LoginPage: React.FC<LoginPageProps> = (): JSX.Element => {
                         <div className={classes["content-form-body"]}>
                             <h2 className={classes["content-form-body-label"]}>Login</h2>
                             <form onSubmit={handleSubmitForm}>
-                                <TextField value={inputs.username} onChange={handleInputsChange} name="username" fullWidth variant="outlined" placeholder="Username" sx={{mb: 1.2}} />
+                                <TextField value={inputs.username} onChange={handleInputsChange} name="username" fullWidth variant="outlined" placeholder="Username" sx={{ mb: 1.2 }} />
                                 <TextField value={inputs.password} onChange={handleInputsChange} name="password" fullWidth variant="outlined" placeholder="Password" type="password" />
                                 <div className={classes["content-form-body-checkbox"]}>
                                     <FormControlLabel control={<Checkbox name="remember" value={inputs.remember} onChange={handleInputsChange} />} label="Remember me" className={classes["content-form-body-checkbox-label"]} />
                                 </div>
-                                <Button type="submit" variant="contained" className={classes["content-form-body-action"]} sx={{mb: 1.5}}>Log In</Button>
+                                <RouterLink to="/">
+                                    <Button type="submit" variant="contained" className={classes["content-form-body-action"]} sx={{ mb: 1.5 }}>Log In</Button>
+                                </RouterLink>
                             </form>
                             <Link underline="none" color="primary.dark" fontWeight={"600"}>Forgot password?</Link>
                         </div>
