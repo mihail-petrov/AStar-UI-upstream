@@ -1,0 +1,65 @@
+@import "../../shared/styles/variables.module.scss";
+
+.wrapper { 
+    width: 1350px;
+    margin: 0 auto;
+}
+
+.content { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 70px;
+
+    &-form { 
+        width: 500px;
+        background-color: #fff;
+        max-height: 800px;
+        padding: 50px 65px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0px 4px 4px rgba(180, 180, 180, 0.25);
+        border-radius: 4px;
+
+        &-logo-text { 
+            font-size: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: $gray-300;
+        }
+
+        &-heading { 
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        &-body { 
+            &-label {
+                margin-bottom: 20px;
+                font-weight: 700;
+                color: $gray-600;
+            }
+
+            &-input { 
+                padding-bottom: 12px;
+            }
+
+            &-checkbox { 
+                padding-left: 5px;
+                margin-bottom: 40px;
+
+                &-label { 
+                }
+            }
+
+            &-action { 
+                margin-bottom: 12px;
+            }
+        }
+
+        &-footer { 
+            margin-top: 100px;
+        }
+    }
+}

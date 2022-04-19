@@ -1,17 +1,19 @@
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import * as React from 'react';
 import { LoginPage } from './pages/LoginPage/LoginPage';
-
-type AppProps = { 
-	
-}
+import { theme } from "./shared/styles/material-ui/theme";
 
 
-export const App: React.FC<AppProps> = (): JSX.Element => {
-	
+export const App: React.FC = (): JSX.Element => {
+
 	return (
 		<>
-			<LoginPage />		
-			Welcome!
+			<ThemeProvider theme={theme}>
+				<CssBaseline>
+					<LoginPage />
+				</CssBaseline>
+			</ThemeProvider>
+
 		</>
 	)
 }
