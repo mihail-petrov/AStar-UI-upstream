@@ -13,24 +13,43 @@ type State = {
 }
 
 export const LoginPage: React.FC<LoginPageProps> = (): JSX.Element => {
-    const [inputs, setInputs] = useState<State>({ username: "", password: "", remember: false });
 
-    const handleInputsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const [inputs, setInputs] = useState<State>({ 
+        username: "", 
+        password: "", 
+        remember: false 
+    });
+
+    const handleInputsChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+
         const name = event.target.name;
         const value = event.target.value;
-        name === "remember" ? setInputs(values => ({ ...values, remember: !inputs.remember })) : setInputs(values => ({ ...values, [name]: value }));
+        
+        if(name === "remember") {
+            return setInputs(values => ({ 
+                ...values, 
+                remember: !inputs.remember 
+            }))
+        }
+        
+        return setInputs(values => ({ 
+            ...values, 
+            [name]: value 
+        }))
     }
 
     const handleSubmitForm = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        // TODO
     }
 
     return (
         <div className={globalClasses["bg-color"]}>
-            <div className={globalClasses["page-wrapper"]}>
-                <section className={classes.content}>
-                    <div className={classes["content-banner"]}>
+            <div 
+                className={globalClasses["page-wrapper"]}>
+                <section 
+                    className={classes.content}>
+                    <div 
+                        className={classes["content-banner"]}>
                         <img src="images/login-banner.png" alt="login-banner" />
                     </div>
                     <div className={classes["content-form"]}>
@@ -41,7 +60,18 @@ export const LoginPage: React.FC<LoginPageProps> = (): JSX.Element => {
                         <div className={classes["content-form-body"]}>
                             <h2 className={classes["content-form-body-label"]}>Login</h2>
                             <form onSubmit={handleSubmitForm}>
-                                <TextField value={inputs.username} onChange={handleInputsChange} name="username" fullWidth variant="outlined" placeholder="Username" sx={{ mb: 1.2 }} />
+                                <TextField 
+                                    <!-- id / class / name -->
+                                    <!-- props -->
+                                    <!-- other / event -->
+                                    value={inputs.username} 
+                                    onChange={handleInputsChange} 
+                                    name="username" 
+                                    fullWidth 
+                                    variant="outlined" 
+                                    placeholder="Username" 
+                                    sx={{ mb: 1.2 }} />
+
                                 <TextField value={inputs.password} onChange={handleInputsChange} name="password" fullWidth variant="outlined" placeholder="Password" type="password" />
                                 <div className={classes["content-form-body-checkbox"]}>
                                     <FormControlLabel control={<Checkbox name="remember" value={inputs.remember} onChange={handleInputsChange} />} label="Remember me" className={classes["content-form-body-checkbox-label"]} />
